@@ -32,7 +32,7 @@ jobs:
 
     - name: Install conda dependencies
       run: |
-        mamba install sage pip
+        mamba install pip
       
     - name: Install build dependencies
       run: |
@@ -41,8 +41,7 @@ jobs:
     
     - name: Build package
       run: |
-        export CMAKE_PREFIX_PATH=$(conda info --base)/envs/build-env
-        ls $(conda info --base)/envs/build-env
+        sudo apt-get install -y libntl-dev libfplll-dev
         python -m build
       
     - name: Publish package
