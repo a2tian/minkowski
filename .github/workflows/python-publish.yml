@@ -40,6 +40,9 @@ jobs:
     
     - name: Build package
       run: |
+        export CMAKE_PREFIX_PATH=$(conda info --base)/envs/build-env
+        export CMAKE_LIBRARY_PATH=$CMAKE_PREFIX_PATH/lib:$CMAKE_LIBRARY_PATH
+        export CMAKE_INCLUDE_PATH=$CMAKE_PREFIX_PATH/include:$CMAKE_INCLUDE_PATH
         python -m build
       
     - name: Publish package
