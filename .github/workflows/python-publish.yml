@@ -18,20 +18,21 @@ permissions:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - uses: conda-incubator/setup-miniconda@v3
       with:
           miniconda-version: "latest"
           python-version: "3.10"
+          mamba-version: "*"
+          channels: conda-forge,defaults
+          channel-priority: true
           activate-environment: build-env
 
     - name: Install conda dependencies
       run: |
-        conda install -c conda-forge sage pip
+        mamba install sage pip
       
     - name: Install build dependencies
       run: |
@@ -41,6 +42,7 @@ jobs:
     - name: Build package
       run: |
         export CMAKE_PREFIX_PATH=$(conda info --base)/envs/build-env
+        ls $(conda info --base)/envs/build-env
         python -m build
       
     - name: Publish package
