@@ -22,16 +22,29 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v3
+    - name: Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v3
       with:
-        python-version: '3.x'
+        auto-activate-base: false  # Prevent activation of the base environment
+        python-version: "3.x"      # Ensure Python 3.x compatibility
+
+    - name: Create and activate Conda environment
+      run: |
+        conda create -n build-env -y python=3.x
+        conda activate build-env
+        conda install -c conda-forge sage pip
+      
     - name: Install dependencies
       run: |
+        conda activate build-env
         python -m pip install --upgrade pip
         pip install build
+    
     - name: Build package
-      run: python -m build
+      run: |
+        conda activate build-env
+        python -m build
+      
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
