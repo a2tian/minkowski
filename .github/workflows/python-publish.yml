@@ -27,7 +27,7 @@ jobs:
       uses: conda-incubator/setup-miniconda@v3
       with:
         auto-activate-base: false  # Prevent activation of the base environment
-        python-version: 3.10      # Ensure Python 3.x compatibility
+        python-version: "3.10"      # Ensure Python 3.x compatibility
 
     - name: Create and activate Conda environment
       run: |
