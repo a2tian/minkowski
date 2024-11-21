@@ -17,7 +17,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.21.3
         env:
-          CIBW_BEFORE_ALL_LINUX: "yum install -y libfplll libfplll-devel gmp gmp-devel"
+          CIBW_BEFORE_ALL_LINUX: "yum install -y wget gcc make gmp-devel"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...
