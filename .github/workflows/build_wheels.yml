@@ -17,7 +17,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.21.3
         env:
-          CIBW_BEFORE_ALL: "apt-get install -y libfplll-dev libntl-dev"
+          CIBW_BEFORE_ALL: "apt install -y libfplll-dev libntl-dev"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...
