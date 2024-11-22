@@ -7,7 +7,7 @@ yum install -y gmp gmp-devel mpfr mpfr-devel autoconf automake libtool pkgconfig
 git clone https://github.com/fplll/fplll.git
 cd fplll
 ./autogen.sh
-./configure
+./configure --without-qd
 make
 make install
 cd ..
