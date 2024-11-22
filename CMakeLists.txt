@@ -47,9 +47,9 @@ find_package(Threads)
 
 file(GLOB SOURCES "cc/*.cc")
 
-nanobind_build_library(nanobind SHARED)
-nanobind_add_module(_minkowski  ${SOURCES})
-target_link_libraries(_minkowski PRIVATE nanobind Threads::Threads OpenMP::OpenMP_CXX  ${FPLLL_LIB} ${NTL_LIB} ${GMP_LIB} ${M_LIB})
+nanobind_build_library(nanobind-static)
+nanobind_add_module(_minkowski NB_STATIC ${SOURCES})
+target_link_libraries(_minkowski PRIVATE Threads::Threads OpenMP::OpenMP_CXX  ${FPLLL_LIB} ${NTL_LIB} ${GMP_LIB} ${M_LIB})
 
 install(TARGETS _minkowski LIBRARY DESTINATION minkowski)
 
