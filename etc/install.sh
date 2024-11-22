@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install dependencies
-yum install -y gmp gmp-devel mpfr mpfr-devel autoconf automake libtool
+yum install -y gmp gmp-devel mpfr mpfr-devel autoconf automake libtool pkgconfig
 
 # Install fplll
 git clone https://github.com/fplll/fplll.git
