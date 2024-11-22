@@ -13,6 +13,7 @@ cd fplll-5.4.5
 make
 make install
 cd ..
+rm -rf fplll-5.4.5
 
 # Install NTL
 wget https://libntl.org/ntl-11.5.1.tar.gz
@@ -23,3 +24,4 @@ cd ntl-11.5.1/src
 make
 make install
 cd ../..
+rm -rf ntl-11.5.1
