@@ -4,8 +4,10 @@
 yum install -y gmp gmp-devel mpfr mpfr-devel autoconf automake libtool pkgconfig
 
 # Install fplll
-git clone https://github.com/fplll/fplll.git
-cd fplll
+wget https://github.com/fplll/fplll/releases/download/5.4.5/fplll-5.4.5.tar.gz
+gunzip fplll-5.4.5.tar.gz
+tar xf fplll-5.4.5.tar
+cd fplll-5.4.5
 ./autogen.sh
 ./configure --without-qd
 make
