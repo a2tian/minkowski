@@ -19,7 +19,7 @@ wget https://libntl.org/ntl-11.5.1.tar.gz
 gunzip ntl-11.5.1.tar.gz
 tar xf ntl-11.5.1.tar
 cd ntl-11.5.1/src
-./configure
+./configure SHARED=on
 make
 make install
 cd ../..
