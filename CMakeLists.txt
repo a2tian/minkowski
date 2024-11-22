@@ -52,33 +52,3 @@ nanobind_add_module(_minkowski NB_STATIC ${SOURCES})
 target_link_libraries(_minkowski PRIVATE Threads::Threads OpenMP::OpenMP_CXX  ${FPLLL_LIB} ${NTL_LIB} ${GMP_LIB} ${M_LIB})
 
 install(TARGETS _minkowski LIBRARY DESTINATION minkowski)
-
-# add_library(_pypacking STATIC ${SOURCES})
-# target_include_directories(_pypacking PRIVATE ${CMAKE_SOURCE_DIR}/cc)
-# target_link_libraries(_pypacking PRIVATE nanobind Threads::Threads OpenMP::OpenMP_CXX  ${FPLLL_LIB} ${NTL_LIB} ${M_LIB} ${GMP_LIB})
-# # .. enable size optimizations
-# nanobind_opt_size(_pypacking)
-
-# # .. enable link time optimization
-# nanobind_lto(_pypacking)
-
-# # .. set the default symbol visibility to 'hidden'
-# nanobind_set_visibility(_pypacking)
-
-# # .. strip unneeded symbols and debug info from the binary (only active in release builds)
-# nanobind_strip(_pypacking)
-
-# # .. disable the stack protector
-# nanobind_disable_stack_protector(_pypacking)
-
-# # .. set the Python extension suffix
-# nanobind_extension(_pypacking)
-
-# # .. set important compilation flags
-# nanobind_compile_options(_pypacking)
-
-# # .. set important linker flags
-# nanobind_link_options(_pypacking)
-
-# nanobind_musl_static_libcpp(_pypacking)
-
