@@ -3,7 +3,6 @@
 
 using namespace NTL;
 using namespace std;
-using namespace fplll;
 
 namespace ntl {
 using svp = double (*)(Mat<ZZ> &, int);
@@ -58,19 +57,3 @@ double hkz(Vec<ZZ> &a, int p, int n) {
     return shortest_vector(a, HKZ, p, n);
 }
 } // namespace ntl
-
-namespace fplll {
-double lll(NTL::Vec<NTL::ZZ> &a, int p, int n) {
-    mat_zz M;
-    init_matrix(M, a, p, n);
-    lll_reduction(M);
-    return mat_norm(M, n);
-}
-
-double hkz(NTL::Vec<NTL::ZZ> &a, int p, int n) {
-    mat_zz M;
-    init_matrix(M, a, p, n);
-    hkz_reduction(M);
-    return mat_norm(M, n);
-}
-} // namespace fplll
