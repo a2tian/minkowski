@@ -18,6 +18,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_BEFORE_ALL_LINUX: "yum install -y wget gcc make gmp gmp-devel; bash etc/install.sh"
+          CIBW_SKIP: "*musllinux*"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...
