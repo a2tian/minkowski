@@ -1,11 +1,13 @@
 #pragma once
 #include <NTL/LLL.h>
-#include <fplll/fplll.h>
+#include <nanobind/ndarray.h>
+#include <vector>
+
+namespace nb = nanobind;
 
 namespace ntl {
-
-double lll(NTL::Vec<NTL::ZZ> &, int, int);
-double hkz(NTL::Vec<NTL::ZZ> &, int, int);
+double lll(NTL::Vec<NTL::ZZ> &, int p, int n);
+double hkz(NTL::Vec<NTL::ZZ> &, int p, int n);
 } // namespace ntl
 
 struct longvec {
@@ -14,24 +16,17 @@ struct longvec {
 };
 
 class HeuristicSearch {
-    using svp = double (*)(NTL::Vec<NTL::ZZ> &, int, int);
-    int N;
+    using svp = double (*)(NTL::Vec<NTL::ZZ> &, int p, int n);
+    using ndarray = nb::ndarray<int, nb::shape<-1>>;
     svp F;
 
   public:
-    HeuristicSearch(int N, std::string s);
-    HeuristicSearch(int N, svp F);
+    HeuristicSearch(svp F);
+    HeuristicSearch(std::string s = "hkz");
 
-    longvec cube(int p, double r);
-    longvec simplex(int p, double r);
-    longvec diagonal(int p, double r1, double r2);
+    longvec one(int n, int p, std::vector<int> a);
+    longvec cube(int n, int p, double r = 0.25);
+    longvec simplex(int n, int p, double r = 0.25);
+    longvec diagonal(int n, int p, double r1 = 0.25, double r2 = 0.25);
+    longvec center(int n, int p, int w, std::vector<int> c, double r1 = 0.25, double r2 = 0.25);
 };
-
-namespace fplll {
-typedef fplll::ZZ_mat<mpz_t> mat_zz;
-typedef fplll::Z_NR<mpz_t> zz;
-
-double lll(NTL::Vec<NTL::ZZ> &, int, int);
-double hkz(NTL::Vec<NTL::ZZ> &, int, int);
-
-}; // namespace fplll

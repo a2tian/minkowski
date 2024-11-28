@@ -3,7 +3,6 @@
 #include <gmp.h>
 
 using namespace NTL;
-using namespace fplll;
 using namespace std;
 
 /**
@@ -59,6 +58,17 @@ void diagonal(Vec<ZZ> &a, double r, int n) {
             return;
         }
         a[i] = (int)((1 - r) * conv<int>(a[i - 1]));
+    }
+    a[1]++;
+}
+
+void cdiagonal(Vec<ZZ> &a, double r, Vec<int> b1, Vec<int> b2, int n) {
+    for (int i = n - 1; i > 1; i--) {
+        if (a[i] < min(conv<int>(a[i - 1]), b2[i - 1])) {
+            a[i]++;
+            return;
+        }
+        a[i] = max((int)((1 - r) * conv<int>(a[i - 1])), b1[i - 1]);
     }
     a[1]++;
 }
