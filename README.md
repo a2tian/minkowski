@@ -3,7 +3,7 @@
 Minkowski is a Python library for computing dense lattice packings of equal hyperspheres. 
 
 ## Installation
-`Python >= 3.8` is required. Note that **only Linux is supported at this time**. Please contact the authors if you would like to see support for additional sustems (or submit a pull request)!
+`Python >= 3.8` is required. Note that **only Linux is supported at this time**. Please contact the authors if you would like to see support for additional systems (or submit a pull request)!
 
 ```
 pip install minkowski
