@@ -6,8 +6,9 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "minkowski"
 version = "0.0.1a0"
-description = "A Python package for finding dense lattice packings"
+description = "Fast enumeration of lattice packings in high-dimensional space."
 readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.8"
 authors = [
     { name = "Aaron Tian", email = "atian [at] umass.edu" },
@@ -18,7 +19,8 @@ classifiers = [
 # Optional: runtime dependency specification
 # dependencies = [ "cryptography >=41.0" ]
 
-# [project.urls]
+[project.urls]
+Repository = "https://github.com/waiwasabi/minkowski"
 # Homepage = "https://github.com/your/project"
 
 [tool.scikit-build]
