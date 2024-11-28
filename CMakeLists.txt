@@ -28,7 +28,7 @@ message(WARNING "\
   after editing C++ files.")
 endif()
 
-find_package(Python 3.10 
+find_package(Python 3.8
   REQUIRED COMPONENTS Interpreter Development.Module
   OPTIONAL_COMPONENTS Development.SABIModule)
 
@@ -41,7 +41,6 @@ find_package(nanobind CONFIG REQUIRED)
 find_library(NTL_LIB ntl)
 find_library(GMP_LIB gmp)
 find_library(M_LIB m)
-find_library(FPLLL_LIB fplll)
 find_package(OpenMP)
 find_package(Threads)
 
@@ -49,6 +48,14 @@ file(GLOB SOURCES "cc/*.cc")
 
 nanobind_build_library(nanobind-static)
 nanobind_add_module(_minkowski NB_STATIC ${SOURCES})
-target_link_libraries(_minkowski PRIVATE Threads::Threads OpenMP::OpenMP_CXX  ${FPLLL_LIB} ${NTL_LIB} ${GMP_LIB} ${M_LIB})
+target_link_libraries(_minkowski PRIVATE Threads::Threads OpenMP::OpenMP_CXX ${NTL_LIB} ${GMP_LIB} ${M_LIB})
+
+nanobind_add_stub(_minkowski_stub 
+  MODULE _minkowski
+  OUTPUT _minkowski.pyi
+  MARKER_FILE py.typed
+  PYTHON_PATH $<TARGET_FILE_DIR:_minkowski>
+  DEPENDS _minkowski
+)  
 
 install(TARGETS _minkowski LIBRARY DESTINATION minkowski)
