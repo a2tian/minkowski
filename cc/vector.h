@@ -4,5 +4,5 @@
 // function prototypes
 
 namespace ntl {
-double norm(NTL::Vec<NTL::ZZ> &v);
+NTL::RR norm(NTL::Vec<NTL::ZZ> &v);
 }

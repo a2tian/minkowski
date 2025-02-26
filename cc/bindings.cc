@@ -1,8 +1,10 @@
-#include "HeuristicSearch.h"
 #include <nanobind/nanobind.h>
 #include <nanobind/stl/bind_vector.h>
 #include <nanobind/stl/string.h>
+
 #include <sstream>
+
+#include "HeuristicSearch.h"
 
 namespace nb = nanobind;
 using namespace nb::literals;
@@ -22,7 +24,7 @@ NB_MODULE(_minkowski, m) {
         })
         .def("__getitem__", [](const NTL::Vec<NTL::ZZ> &v, size_t i) {
             if (i >= v.length()) throw std::out_of_range("Index out of range");
-            return NTL::conv<int>(v[i]); // Convert ZZ to Python int
+            return NTL::conv<int>(v[i]);  // Convert ZZ to Python int
         })
         .def("__repr__", [](const NTL::Vec<NTL::ZZ> &v) {
             std::ostringstream oss;

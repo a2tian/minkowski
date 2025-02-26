@@ -2,5 +2,8 @@ __pycache__
 .vscode
 dist
 build
+build_cc
 wheelhouse
+out
 test.py
+test

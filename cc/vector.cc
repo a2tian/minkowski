@@ -7,11 +7,11 @@ namespace ntl {
 /**
  * @brief Compute the norm of a vector
  */
-double norm(Vec<ZZ> &v) {
-    double res = 0;
+RR norm(Vec<ZZ> &v) {
+    ZZ res;
     for (int i = 0; i < v.length(); i++) {
-        res += conv<int>(v[i] * v[i]);
+        res += v[i] * v[i];
     }
-    return sqrt(res);
+    return sqrt(conv<RR>(res));
 }
-} // namespace ntl
+}  // namespace ntl

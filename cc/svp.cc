@@ -5,15 +5,16 @@ using namespace NTL;
 using namespace std;
 
 namespace ntl {
-using svp = double (*)(Mat<ZZ> &, int);
+    
+using svp = RR (*)(Mat<ZZ> &, long);
 
-double EXACT_LLL(Mat<ZZ> &B, int) {
+RR EXACT_LLL(Mat<ZZ> &B, long) {
     ZZ det2;
     LLL(det2, B, 99, 100);
     return norm(B[0]);
 }
 
-double HKZ(Mat<ZZ> &B, int n) {
+RR HKZ(Mat<ZZ> &B, long n) {
     BKZ_FP(B, 0.99, n);
     return norm(B[0]);
 }
@@ -27,7 +28,7 @@ double HKZ(Mat<ZZ> &B, int n) {
  * @param R a pointer to a function that performs a lattice basis reduction
  * @param N the dimension of the lattice
  */
-double shortest_vector(Vec<ZZ> &a, svp f, int p, int n) {
+RR shortest_vector(Vec<ZZ> &a, svp f, ZZ p, long n) {
     Mat<ZZ> B = ident_mat_ZZ(n) * p;
     B[0] = a;
     return f(B, n);
@@ -41,7 +42,7 @@ double shortest_vector(Vec<ZZ> &a, svp f, int p, int n) {
  * @param p a non-negative integer
  * @param N the dimension of the lattice
  */
-double lll(Vec<ZZ> &a, int p, int n) {
+RR lll(Vec<ZZ> &a, ZZ p, long n) {
     return shortest_vector(a, EXACT_LLL, p, n);
 }
 
@@ -53,7 +54,7 @@ double lll(Vec<ZZ> &a, int p, int n) {
  * @param p a non-negative integer
  * @param N the dimension of the lattice
  */
-double hkz(Vec<ZZ> &a, int p, int n) {
+RR hkz(Vec<ZZ> &a, ZZ p, long n) {
     return shortest_vector(a, HKZ, p, n);
 }
 } // namespace ntl
